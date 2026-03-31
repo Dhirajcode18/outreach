@@ -1,9 +1,9 @@
 ﻿import { useDeferredValue, useEffect, useState, useTransition } from 'react'
 import './App.css'
 
-const API_BASE =
-  import.meta.env.VITE_API_BASE ??
-  (import.meta.env.DEV ? 'http://localhost:4000' : window.location.origin)
+const DEFAULT_API_BASE = 'https://outreach-04c3.onrender.com'
+
+const API_BASE = import.meta.env.VITE_API_BASE ?? DEFAULT_API_BASE
 
 const NAV_ITEMS = [
   { key: 'dashboard', label: 'Dashboard', section: null, icon: 'dashboard' },
@@ -60,7 +60,7 @@ function App() {
         }
 
         setError(
-          `Could not load ${getTab(activeTab).label}. Start the backend in /server and make sure ${API_BASE}/api/health is reachable.`,
+          `Could not load ${getTab(activeTab).label}. Make sure ${API_BASE}/api/health is reachable.`,
         )
       } finally {
         if (!controller.signal.aborted) {
@@ -903,4 +903,7 @@ function Icon({ name }) {
 }
 
 export default App
+
+
+
 
